@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人知识库</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 新 Bootstrap5 核心 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+  <style>
+    /* 整体页面背景色及字体设置 */
+    body {
+      background-color: #f4f4f4;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    /* 导航栏样式 */
+    .navbar {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .navbar-brand,
+    .navbar-nav.nav-link {
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-brand:hover,
+    .navbar-nav.nav-link:hover {
+      color: #f8f9fa;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+
+    /* 搜索框样式 */
+    .form-control {
+      border-color: #ced4da;
+    }
+
+    .btn-outline-primary {
+      border-color: #ced4da;
+      color: #ced4da;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-primary:hover {
+      background-color: #ced4da;
+      color: white;
+    }
+
+    /* 文章列表（左侧导航）样式 */
+    .article-list {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-list h4 {
+      margin-bottom: 15px;
+      color: #333;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 10px;
+    }
+
+    .article-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .article-list li {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 10px;
+    }
+
+    .article-list a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .article-list a:hover {
+      color: #007bff;
+    }
+
+    /* 右侧知识卡片样式 */
+    .knowledge-card {
+      border: 1px solid #eee;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+
+    .knowledge-card:hover {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 知识卡片标题样式 */
+    .knowledge-card h5 {
+      margin-bottom: 10px;
+    }
+
+    /* 按钮样式 */
+    .btn-primary.btn-sm {
+      margin-top: 10px;
+    }
+
+    /* 最近更新列表样式 */
+    .list-group-item {
+      border-color: #e5e5e5;
+      padding: 15px;
+    }
+
+    .list-group-item h5 {
+      margin-bottom: 5px;
+    }
+
+    .list-group-item small {
+      color: #666;
+    }
+
+    /* 轮播图样式 */
+    #mainCarousel {
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    #mainCarousel.carousel-inner {
+      max-height: 400px;
+    }
+
+    #mainCarousel.carousel-caption {
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      padding: 15px;
+    }
+
+    #mainCarousel.carousel-caption h3 {
+      margin-bottom: 10px;
+    }
+
+    /* 页脚样式 */
+    footer {
+      background-color: #007bff;
+      color: white;
+      margin-top: 30px;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="https://featon0526.github.io/index.html">个人知识库</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">首页</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index03.html">知识</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index04.html">项目</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index05.html">资源</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index06.html">个人简介</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="搜索知识...">
+          <button class="btn btn-outline-primary" type="submit">搜索</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 轮播图Banner -->
+<div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- 轮播图指示器 -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+    </div>
+
+    <!-- 轮播图内容 -->
+    <div class="carousel-inner" style="max-height: 450px;">
+        <div class="carousel-item active">
+            <img src="images/1.jpeg" class="d-block w-100" alt="轮播图1"> <!-- 这里移除 h-200 类 -->
+            <div class="carousel-caption">
+                <h3>欢迎来到个人知识库</h3>
+                <p>在这里记录和分享学习心得</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="images/2.jpeg" class="d-block w-100" alt="轮播图2"> <!-- 这里移除 h-200 类 -->
+            <div class="carousel-caption">
+                <h3>技术分享</h3>
+                <p>分享最新的技术动态和学习经验</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="images/3.jpeg" class="d-block w-100" alt="轮播图3"> <!-- 这里移除 h-200 类 -->
+            <div class="carousel-caption">
+                <h3>资源收藏</h3>
+                <p>收集整理有价值的学习资源</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 轮播图控制按钮 -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">上一张</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">下一张</span>
+    </button>
+</div>
+
+  <!-- 主要内容区 -->
+  <div class="container" style="margin-top: 30px;">
+    <div class="row">
+      <!-- 左侧分类导航 -->
+      <div class="col-md-3">
+        <div class="article-list">
+          <h4>知识分类</h4>
+          <ul>
+            <li><a href="index01.html">编程技术</a></li>
+            <li><a href="index02.html">AI工具收藏</a></li>
+            <li><a href="index03.html">AI知识文章</a></li>
+            <li><a href="index04.html">我的项目</a></li>
+            <li><a href="index05.html">资源收藏</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 右侧内容展示 -->
+      <div class="col-md-9">
+        <!-- 知识卡片区域 -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="knowledge-card">
+              <h5>编程技术</h5>
+              <p>包含各类编程语言学习笔记、框架使用教程等技术文档。</p>
+              <a href="index01.html" class="btn btn-primary btn-sm">查看详情</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="knowledge-card">
+              <h5>工具使用</h5>
+              <p>常用开发工具、效率软件的使用技巧和经验分享。</p>
+              <a href="index02.html" class="btn btn-primary btn-sm">查看详情</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="knowledge-card">
+              <h5>学习笔记&工具使用</h5>
+              <p>日常学习过程中的心得体会和重要知识点记录以及一些AI文章的收集。</p>
+              <a href="index03.html" class="btn btn-primary btn-sm">查看详情</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="knowledge-card">
+              <h5>我的项目</h5>
+              <p>数据可视化项目的展示，项目开发过程中的经验总结和问题解决方案。</p>
+              <a href="index04.html" class="btn btn-primary btn-sm">查看详情</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 最近更新 -->
+        <div class="mt-4">
+          <h4>最近更新</h4>
+          <div class="list-group">
+            <a href="index01.html" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Ai提示词使用技巧总结</h5>
+                <small>3天前</small>
+              </div>
+              <p class="mb-1">记录了日常使用Ai提示词时的常用命令和操作流程...</p>
+            </a>
+            <a href="index02.html" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Cursor入门教程</h5>
+                <small>5天前</small>
+              </div>
+              <p class="mb-1">Cursor基础概念及常用操作指南...</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="bg-light py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-0">© 2024 个人知识库. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS 和依赖 -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

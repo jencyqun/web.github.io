@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人知识库</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    <style>
+        /* 整体页面背景色及字体设置 */
+        body {
+            background-color: #f4f4f4;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        /* 导航栏样式 */
+      .navbar {
+            background-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+      .navbar-brand,
+      .navbar-nav.nav-link {
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+      .navbar-brand:hover,
+      .navbar-nav.nav-link:hover {
+            color: #f8f9fa;
+        }
+
+      .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+        }
+
+        /* 搜索框样式 */
+      .form-control {
+            border-color: #ced4da;
+        }
+
+      .btn-outline-primary {
+            border-color: #ced4da;
+            color: #ced4da;
+            transition: all 0.3s ease;
+        }
+
+      .btn-outline-primary:hover {
+            background-color: #ced4da;
+            color: white;
+        }
+
+        /* 知识卡片通用样式 */
+      .knowledge-card {
+            border: 1px solid #eee;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+      .knowledge-card:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 表格样式 */
+        table.table-bordered {
+            border: 1px solid #dee2e6;
+        }
+
+        table.table-bordered th,
+        table.table-bordered td {
+            border: 1px solid #dee2e6;
+        }
+
+        table.table-bordered thead th {
+            background-color: #f8f9fa;
+            color: #333;
+            font-weight: bold;
+        }
+
+        table.table-bordered tbody tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        table.table-bordered a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        table.table-bordered a:hover {
+            color: #0056b3;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #007bff;
+            color: white;
+            margin-top: 30px;
+        }
+
+        /* 个人简介区域标题样式 */
+           .personal-intro-title {
+                 text-align: center;
+                 margin-bottom: 30px;
+                 color: #333;
+                 font-weight: bold;
+                 font-size: 28px;
+                 text-decoration: underline;
+                 text-decoration-color: #007bff;
+                 text-decoration-thickness: 2px;
+                 line-height: 1.5;
+             }
+
+        /* 个人头像样式 */
+      .personal-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 个人信息列表样式 */
+      .personal-info-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+      .personal-info-list li {
+            margin-bottom: 10px;
+        }
+
+      .personal-info-list strong {
+            width: 100px;
+            display: inline-block;
+        }
+
+        /* 技能展示区域样式 */
+      .skills-section {
+            margin-bottom: 30px;
+        }
+
+      .skills-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: bold;
+        }
+
+      .skill-item {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* 经历展示区域样式 */
+      .experiences-section {
+            margin-bottom: 30px;
+        }
+
+      .experiences-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: bold;
+        }
+
+      .experience-item {
+            border-left: 3px solid #007bff;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+      .experience-item h4 {
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+      .experience-item p {
+            margin-bottom: 0;
+            color: #666;
+        }
+    </style>
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 实现滚动时导航栏透明度渐变效果
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="https://featon0526.github.io/index.html">个人知识库</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index03.html">知识</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index04.html">项目</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index05.html">资源</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index06.html">个人简介</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="搜索知识...">
+                    <button class="btn btn-outline-primary" type="submit">搜索</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区 -->
+    <div class="container" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-md-12">
+            
+				<h1 class="personal-intro-title">个人简介</h1>
+                <img src="./images/avatar.jpg" alt="个人头像" class="personal-avatar">
+                <ul class="personal-info-list">
+                    <li><strong>姓名：</strong>谢热那依.艾尼娃尔</li>
+                    <li><strong>学号：</strong>2022106092</li>
+                    <li><strong>专业：</strong>网络与新媒体</li>
+                    <li><strong>电子邮箱：</strong>2546089969@qq.com</li>
+                    <li><strong>联系电话：</strong>18509959958</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 skills-section">
+                <h3>技能专长</h3>
+                <span class="skill-item">视频剪辑</span>
+                <span class="skill-item">网络营销</span>
+                <span class="skill-item">公众号运用</span>
+                <span class="skill-item">网页制作</span>
+                <span class="skill-item">新媒体运营</span>
+            </div>
+            <div class="col-md-6 experiences-section">
+                <h3>学习/项目经历</h3>
+                <div class="experience-item">
+                    <h4>完成网络与新媒体专业的全部课程学习，预获得本科学历。</h4>
+                    <p>完成了网络与新媒体专业的全部课程学习，预获得本科学历。
+专业课程涵盖新媒体理论、数字媒体制作、网络传播、网络编辑、网页制作、Python等多个方面，具备扎实的理论基础。并在2023年夏天参加了知乎实践活动，取得了相应的好成绩。
+在2024年夏天参加西咸新区实践活动，并获得了一等奖。</p>
+                </div>
+                <div class="experience-item">
+                    <h4>担任校团委直属社团干部</h4>
+                    <p>在海报设计方面
+深入了解活动主题和目标受众，制定设计方案;使用专业设计软件(PS)制作出符合活动需求的海报和宣传资料，通过校园内的海报栏、教学楼等地点进行张贴宣传，高活动的知名和参与。
+社交媒体运营：定期发布与社团活动相关的内容，包括活动预告、现场报道和回顾等，与粉丝互动，回答粉丝问题和建议；通过数据分析工具，了解用户喜好和行为习惯，优化内容发布策略，最终实现了学生会官方账号粉丝数量增长了 300%，与粉丝的互动量提升了 50%。</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>我是一个积极向上、热爱学习新知识的人，对互联网技术和各领域知识充满好奇心，平时喜欢探索不同的技术应用场景，通过不断实践积累经验，希望能在未来的学习和工作中继续提升自己，为相关领域贡献自己的一份力量。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-light py-4 mt-1">
+        <div class="container text-center">
+            <p class="mb-0">© 2024 个人知识库. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS 和依赖 -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

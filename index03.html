@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人知识库</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 新 Bootstrap5 核心 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+
+  <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+  <script src="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+  <style>
+    /* 整体页面背景色及字体设置 */
+    body {
+      background-color: #f4f4f4;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    /* 导航栏样式 */
+    .navbar {
+      background-color: #007bff;
+    }
+
+    .navbar-brand,
+    .navbar-nav.nav-link {
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-brand:hover,
+    .navbar-nav.nav-link:hover {
+      color: #f8f9fa;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+
+    /* 搜索框样式 */
+    .form-control {
+      border-color: #ced4da;
+    }
+
+    .btn-outline-primary {
+      border-color: #ced4da;
+      color: #ced4da;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-primary:hover {
+      background-color: #ced4da;
+      color: white;
+    }
+
+    /* 文章列表（左侧导航）样式 */
+    .article-list {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-list h4 {
+      margin-bottom: 15px;
+      color: #333;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 10px;
+    }
+
+    .article-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .article-list li {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 10px;
+    }
+
+    .article-list a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .article-list a:hover {
+      color: #007bff;
+    }
+
+    /* 右侧内容展示区域样式 */
+    .article-content {
+      padding: 20px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+      /* 当内容超出时显示滚动条 */
+      animation: fadeIn 0.5s ease;
+    }
+
+    .article-content h1 {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .article-content.meta {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .article-content.content {
+      line-height: 1.8;
+      color: #333;
+    }
+
+    /* 知识卡片样式 */
+    .knowledge-card {
+      border: 1px solid #eee;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+
+    .knowledge-card:hover {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 图片样式 */
+    .article-content img {
+      width: 100%;
+      max-width: 500px;
+      /* 可根据实际需求调整最大宽度 */
+      margin-top: 10px;
+      /* 适当调整图片与文字的间距 */
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 动画效果 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="https://featon0526.github.io/index.html">个人知识库</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">首页</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index03.html">知识</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index04.html">项目</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index05.html">资源</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index06.html">个人简介</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="搜索知识..." ); <button
+            class="btn btn-outline-primary" type="submit">搜索</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主要内容区 -->
+  <div class="container" style="margin-top: 80px;">
+    <div class="row">
+      <!-- 左侧分类导航 -->
+      <div class="col-md-3">
+        <div class="article-list">
+          <h4>AI知识文章</h4>
+          <ul>
+            <li><a href="#" data-note-title="AI图像识别技术"
+                data-note-link="https://baike.baidu.com/item/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB?fromModule=lemma_search-box"
+                data-note-img="./images/3.png">AI图像识别知识</a></li>
+            <li><a href="#" data-note-title="ChatGPT介绍"
+                data-note-link="https://baike.baidu.com/item/OpenAI?fromModule=lemma_search-box"
+                data-note-img="./images/2.png">ChatGPT知识</a></li>
+            <li><a href="#" data-note-title="人工智能+介绍"
+                data-note-link="https://baike.baidu.com/item/AI%2B/19622390?fromModule=search-result_lemma"
+                data-note-img="./images/4.png">人工智能知识</a></li>
+            <li><a href="#" data-note-title="大模型介绍"
+                data-note-link="https://baike.baidu.com/item/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%A7%E6%A8%A1%E5%9E%8B/63800799?fromtitle=%E5%A4%A7%E6%A8%A1%E5%9E%8B&fromid=63685028"
+                data-note-img="./images/1.png">大模型知识</a></li>
+            <li><a href="#" data-note-title="语音识别知识"
+                data-note-link="https://baike.baidu.com/item/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/10927133?fromModule=lemma_inlink"
+                data-note-img="./images/5.jpeg">语音识别知识</a></li>
+			<li><a href="#" data-note-img="./images/bj1.jpg" >学习笔记1</a></li>
+			<li><a href="#" data-note-img="./images/bj2.jpg" >学习笔记2</a></li>
+			<li><a href="#" data-note-img="./images/bj3.jpg" >学习笔记3</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 右侧内容展示 -->
+      <div class="col-md-9">
+        <div id="articleContent" class="article-content">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="bg-light py-4 mt-1">
+    <div class="container text-center">
+      <p class="mb-0">© 2024 个人知识库. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS 和依赖 -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script>
+    // 获取所有学习笔记的链接元素
+    const noteLinks = document.querySelectorAll('.article-list a');
+    noteLinks.forEach((link) => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault(); // 阻止默认的跳转行为
+        const noteTitle = this.dataset.noteTitle;
+        const noteLink = this.dataset.noteLink;
+        const noteImg = this.dataset.noteImg; // 获取图片链接
+        // 先清空之前的内容（如果有的话）
+        document.getElementById('articleContent').innerHTML = '';
+        // 根据笔记标题和链接创建对应的内容元素
+        const newCard = document.createElement('div');
+        newCard.className = "knowledge-card w-100";
+        const contentLink = document.createElement('a');
+        contentLink.href = noteLink;
+        contentLink.textContent = noteTitle;
+        newCard.appendChild(contentLink);
+
+        // 创建图片元素并设置属性和样式
+        const imgElement = document.createElement('img');
+        imgElement.src = noteImg;
+        imgElement.alt = noteTitle + "相关图片";
+
+        // 将图片元素添加到知识卡片内，使其显示在文字下方
+        newCard.appendChild(imgElement);
+
+        document.getElementById('articleContent').appendChild(newCard);
+      });
+    });
+
+    // 在页面加载完成后，触发第一个学习笔记链接的点击事件，以显示其内容
+    document.addEventListener("DOMContentLoaded", function () {
+      const firstLink = noteLinks[0];
+      if (firstLink) {
+        firstLink.click();
+      }
+    });
+  </script>
+</body>
+
+</html>
